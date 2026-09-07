@@ -1,0 +1,8 @@
+# Fichiers Windows/WSL
+*:Zone.Identifier
+Thumbs.db
+.DS_Store
+
+# Images sources non utilisees par le site
+ChatGPT Image*.png
+WhatsApp Image*.jpeg
