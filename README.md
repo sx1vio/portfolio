@@ -48,8 +48,6 @@ fichier (attribut `action` du formulaire, constante `ENDPOINT`, liens `mailto:`)
 |---|---|
 | **Activer le formulaire** (voir §1) | boîte mail challasylvio@gmail.com |
 | **Logo GAPOB** — leur site `gapob.bj` est injoignable, GAPOB s'affiche donc en toutes lettres. Envoyez-moi le fichier et je le pose. | `assets/firm-gapob.svg` à créer, puis section « marquee » |
-| **Captures de la vraie app BelÔ** (Flutter) — Flutter n'est pas installé sur cette machine, la carte utilise donc la section « L'application » de votre site BelÔ. Trois captures depuis votre téléphone feraient encore mieux. | `assets/projets/belo-app.jpg` |
-| **Photos du stage Sèmè City** (robots, cartes, soudure) — c'est le seul projet sans visuel réel, il garde une illustration vectorielle. | carte 06 de la section `#projets` |
 | **Année du baccalauréat** — j'ai mis 2024, à confirmer | 4<sup>e</sup> diapositive de « Formation & expérience » |
 | **Dates et intitulé exact de l'alternance GAPOB** | 2<sup>e</sup> diapositive de « Formation & expérience » |
 
@@ -61,18 +59,21 @@ fichier (attribut `action` du formulaire, constante `ENDPOINT`, liens `mailto:`)
 chiffres → parcours → tarifs → intérêts → pied de page. Les projets passent avant le
 profil : c'est la preuve du travail qui doit arriver en premier.
 
-**Les six projets présentés** — chaque carte porte une **capture réelle** du projet
-(`assets/projets/`), produite en lançant le projet et en le photographiant, sauf la
-dernière qui garde une illustration.
+**Les cinq projets présentés** — chaque carte porte une **capture réelle** du projet
+(`assets/projets/`). Les cartes BelÔ et Baker Tilly pointent vers le produit en ligne
+(flèche en haut à droite de la carte, ouvre un nouvel onglet).
 
-| # | Projet | Visuel | Pile |
-|---|---|---|---|
-| 01 | **BelÔ** — marketplace de services beauté | section « L'application » du site BelÔ | Flutter, Supabase, Firebase, React |
-| 02 | **Bailo** — SaaS de gestion locative | landing Next.js lancée en local | NestJS, Next.js, Prisma, PostgreSQL, n8n |
-| 03 | **Boby** — assistant dev, hackathon IBM | graphe de dépendances généré par l'app | React, FastAPI, IBM watsonx |
-| 04 | **HUZZ** — boutique streetwear | accueil de la boutique | Node.js, Express, FedaPay |
-| 05 | **BelÔ Web** — vitrine et espace légal | accueil du site vitrine | HTML, CSS, SEO, RGPD |
-| 06 | **Sèmè City Open Park** — robotique et embarqué | illustration (photos à fournir) | Arduino, ESP32, Python, KiCad |
+| # | Projet | Visuel | Pile | Lien |
+|---|---|---|---|---|
+| 01 | **BelÔ** — marketplace de services beauté | captures réelles de la fiche App Store | Flutter, Supabase, Firebase, React | apps.apple.com (App Store, pas encore sur Play Store) |
+| 02 | **Baker Tilly Bénin** — site institutionnel | capture réelle du site en ligne | HTML, CSS, JS, SEO | bakertilly.bj |
+| 03 | **Boby** — assistant dev, hackathon IBM | graphe de dépendances généré par l'app | React, FastAPI, IBM watsonx | — |
+| 04 | **HUZZ** — boutique streetwear | accueil de la boutique | Node.js, Express, FedaPay | huzz-me.shop (hors ligne) |
+| 05 | **BelÔ Web** — vitrine et espace légal | accueil du site vitrine | HTML, CSS, SEO, RGPD | — |
+
+Bailo et Sèmè City Open Park restent des projets réels (retirés de `#projets` à la
+demande de Marc-Sylvio, gardés comme preuves dans certaines pages `services/`), mais ne
+sont plus mis en avant sur la page d'accueil.
 
 **Les pages de service** — chaque flèche de la section « Services » ouvre une page
 dédiée dans `services/` : ce que le service couvre, les projets déjà livrés dessus, la
