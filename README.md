@@ -8,33 +8,26 @@ aucun build, aucune dépendance à installer. Double-cliquez sur `index.html`, i
 Gardez `assets/` à côté du fichier.
 
 Ressources réseau : les polices Google (Onest + JetBrains Mono) et, uniquement à
-l'envoi d'un message, l'API FormSubmit. Tout le reste — les logos de technologies, la
+l'envoi d'un message, l'API Web3Forms. Tout le reste — les logos de technologies, la
 photo — est servi en local, donc le site s'affiche entièrement hors ligne.
 
 ---
 
-## 1. Le formulaire de contact — une activation à faire
+## 1. Le formulaire de contact
 
 Le formulaire envoie les messages à **challasylvio@gmail.com** via
-[FormSubmit](https://formsubmit.co) : pas de compte, pas de serveur à héberger.
+[Web3Forms](https://web3forms.com) : pas de serveur à héberger, gratuit jusqu'à
+250 messages par mois. La clé d'accès est dans le champ caché `access_key` du
+formulaire ; elle est publique par conception (elle ne sait envoyer que vers votre
+adresse). Pour la changer ou voir les statistiques : tableau de bord Web3Forms.
 
-**Deux choses à savoir :**
+L'e-mail du visiteur est mis en adresse de réponse : « Répondre » dans Gmail lui écrit
+directement. Si l'envoi échoue (service en panne, page ouverte en `file:///`), le
+formulaire affiche l'adresse e-mail et le numéro de téléphone, avec un lien `mailto:`
+qui reprend déjà le message du visiteur — rien n'est jamais perdu.
 
-1. **Un e-mail d'activation vous a déjà été envoyé** à challasylvio@gmail.com
-   (objet : « Activate Form » / « Test du formulaire de votre portfolio »).
-   **Cliquez sur le lien « Activate Form » qu'il contient** — sans ça, aucun message
-   n'arrivera. C'est à faire une seule fois, pour toujours.
-
-2. **FormSubmit refuse les pages ouvertes en local** (`file:///...`). Le formulaire ne
-   fonctionne donc que sur le **site mis en ligne** (Netlify, Vercel, GitHub Pages…) ou
-   derrière un petit serveur local :
-
-   ```bash
-   python3 -m http.server 8080   # puis http://localhost:8080
-   ```
-
-   En local sans serveur, le formulaire affiche poliment l'adresse e-mail et le numéro
-   de téléphone plutôt que d'échouer en silence — rien n'est jamais perdu.
+FormSubmit, utilisé jusqu'au 30/09/2026, a été abandonné : son API renvoyait
+« Server Error » (500) pour toutes les adresses.
 
 Le code de l'envoi se trouve en bas de `index.html`, cherchez `ENDPOINT`.
 Pour changer l'adresse de réception, remplacez `challasylvio@gmail.com` partout dans le

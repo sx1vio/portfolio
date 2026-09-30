@@ -24,7 +24,7 @@
 /* ============================================================
    AYÉLÉRUN MARC-SYLVIO CHALLA — Portfolio
    Design system : greyscale + accent vert, liquid glass, motion sobre
-   Fichier unique, aucune dépendance externe hors polices Google et FormSubmit.
+   Fichier unique, aucune dépendance externe hors polices Google et Web3Forms.
    ============================================================ */
 
 /* ---------- 1. Tokens ---------- */
@@ -1993,12 +1993,13 @@ section[id], footer[id], div[id]{ scroll-margin-top:5.5rem }
   <div class="m-panel" id="m-panel">
     <button type="button" class="m-close" id="modal-close" aria-label="Fermer"><svg><use href="#i-x"/></svg></button>
 
-    <form id="m-form" novalidate action="https://formsubmit.co/challasylvio@gmail.com" method="POST">
-      <!-- Champs de configuration FormSubmit (invisibles pour le visiteur) -->
-      <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+    <form id="m-form" novalidate action="https://api.web3forms.com/submit" method="POST">
+      <!-- Champs de configuration Web3Forms (invisibles pour le visiteur).
+           La clé d'accès est publique par conception : elle ne permet que d'envoyer vers challasylvio@gmail.com. -->
+      <input type="hidden" name="access_key" value="7b060eb9-b716-453f-9390-d77c5019cb9d">
+      <input type="hidden" name="subject" value="Nouveau message depuis votre portfolio">
+      <input type="hidden" name="from_name" value="Portfolio Marc-Sylvio CHALLA">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <div style="margin-bottom:.5rem">
         <p class="eyebrow eyebrow--dark"><svg aria-hidden="true"><use href="#i-mail"/></svg> Nouveau projet</p>
         <h2 id="modal-title" class="h3" style="margin-top:.6rem">Parlez-moi de ce que vous construisez.</h2>
@@ -2524,7 +2525,7 @@ section[id], footer[id], div[id]{ scroll-margin-top:5.5rem }
   menu.addEventListener('click', function (e) { if (e.target === menu) closeMenu(); });
 
   /* ---------------------------------------------------------------
-     15. Modale contact (stub — aucun backend)
+     15. Modale contact
      --------------------------------------------------------------- */
   var modal = $('#modal'), mPanel = $('#m-panel'), mForm = $('#m-form');
   var modalReturn = null;
@@ -2563,11 +2564,10 @@ section[id], footer[id], div[id]{ scroll-margin-top:5.5rem }
   $('#m-done').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
 
-  /* Envoi réel via FormSubmit — aucun backend à héberger.
-     Au tout premier message envoyé depuis le site, FormSubmit adresse un e-mail
-     d'activation à challasylvio@gmail.com : il faut cliquer une fois sur son lien.
-     Ensuite, chaque message arrive directement dans la boîte mail. */
-  var ENDPOINT = 'https://formsubmit.co/ajax/challasylvio@gmail.com';
+  /* Envoi réel via Web3Forms — aucun backend à héberger. La clé d'accès (champ
+     caché access_key) est rattachée à challasylvio@gmail.com : chaque message y
+     arrive directement, avec l'e-mail du visiteur en adresse de réponse. */
+  var ENDPOINT = 'https://api.web3forms.com/submit';
 
   mForm.addEventListener('submit', function (e) {
     e.preventDefault();
