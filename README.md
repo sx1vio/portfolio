@@ -55,21 +55,34 @@ fichier (attribut `action` du formulaire, constante `ENDPOINT`, liens `mailto:`)
 
 ## 3. Contenu du site
 
-**Ordre des sections** : hero → formation & expériences → projets → profil → services →
-chiffres → parcours → tarifs → intérêts → pied de page. Les projets passent avant le
-profil : c'est la preuve du travail qui doit arriver en premier.
+**Ordre des sections** : hero → formation & expériences → projets → motion design →
+profil → services → chiffres → parcours → tarifs → intérêts → pied de page. Les projets
+passent avant le profil : c'est la preuve du travail qui doit arriver en premier.
 
 **Les cinq projets présentés** — chaque carte porte une **capture réelle** du projet
-(`assets/projets/`). Les cartes BelÔ et Baker Tilly pointent vers le produit en ligne
-(flèche en haut à droite de la carte, ouvre un nouvel onglet).
+(`assets/projets/`). Les cartes OPUS CORP, BelÔ et Baker Tilly pointent vers le produit
+en ligne (flèche en haut à droite de la carte, ouvre un nouvel onglet).
 
 | # | Projet | Visuel | Pile | Lien |
 |---|---|---|---|---|
-| 01 | **BelÔ** — marketplace de services beauté | captures réelles de la fiche App Store | Flutter, Supabase, Firebase, React | apps.apple.com (App Store, pas encore sur Play Store) |
-| 02 | **Baker Tilly Bénin** — site institutionnel | capture réelle du site en ligne | HTML, CSS, JS, SEO | bakertilly.bj |
-| 03 | **Boby** — assistant dev, hackathon IBM | graphe de dépendances généré par l'app | React, FastAPI, IBM watsonx | — |
-| 04 | **HUZZ** — boutique streetwear | accueil de la boutique | Node.js, Express, FedaPay | huzz-me.shop (hors ligne) |
-| 05 | **BelÔ Web** — vitrine et espace légal | accueil du site vitrine | HTML, CSS, SEO, RGPD | — |
+| 01 | **OPUS CORP** — site de l'agence BTL (Cotonou) | capture réelle du site en ligne | Next.js, React, Framer Motion, SEO | opuscrp.com |
+| 02 | **BelÔ** — marketplace de services beauté | captures réelles de la fiche App Store | Flutter, Supabase, Firebase, React | apps.apple.com (App Store, pas encore sur Play Store) |
+| 03 | **Baker Tilly Bénin** — site institutionnel | capture réelle du site en ligne | HTML, CSS, JS, SEO | bakertilly.bj |
+| 04 | **Boby** — assistant dev, hackathon IBM | graphe de dépendances généré par l'app | React, FastAPI, IBM watsonx | — |
+| 05 | **HUZZ** — boutique streetwear | accueil de la boutique | Node.js, Express, FedaPay | huzz-me.shop (hors ligne) |
+
+**Motion design & design graphique** (`#motion`) — deux vidéos lues sur le site, dans
+`assets/motion/` : la pub **Winix** (16:9, 37 s) et **GozemCar** (9:16, 19 s). Ce sont des
+versions web recompressées (H.264 CRF 24, `faststart`) des rendus Remotion de
+`~/Projets-perso/motion-graph/` (`winix-motion/out/winix-pub-horizontal.mp4`,
+`gozem-motion-2/out/gozemcar.mp4`). Elles démarrent en muet quand elles arrivent à l'écran
+et se mettent en pause quand on les quitte (rien d'automatique en « reduced motion ») ; le
+son s'active avec les contrôles. Pour en ajouter une, recompressez-la avec :
+
+```bash
+ffmpeg -i source.mp4 -vf scale=1280:-2 -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p \
+  -c:a aac -b:a 128k -movflags +faststart assets/motion/nom.mp4
+```
 
 Bailo et Sèmè City Open Park restent des projets réels (retirés de `#projets` à la
 demande de Marc-Sylvio, gardés comme preuves dans certaines pages `services/`), mais ne
