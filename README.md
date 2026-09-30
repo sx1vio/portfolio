@@ -1,15 +1,16 @@
 # Portfolio — Ayélérun Marc-Sylvio CHALLA
 
-Développeur full-stack & systèmes embarqués · Abomey-Calavi, Bénin
+Développeur full-stack & systèmes embarqués · Motion design & design graphique · Abomey-Calavi, Bénin
 challasylvio@gmail.com · +229 01 59 19 65 75
 
-Deux éléments : `index.html` et le dossier `assets/` (logos et photo). Aucun backend,
+Deux éléments : `index.html` et le dossier `assets/` (logos, photo, captures de projets,
+vidéos motion). Aucun backend,
 aucun build, aucune dépendance à installer. Double-cliquez sur `index.html`, il s'ouvre.
 Gardez `assets/` à côté du fichier.
 
 Ressources réseau : les polices Google (Onest + JetBrains Mono) et, uniquement à
 l'envoi d'un message, l'API Web3Forms. Tout le reste — les logos de technologies, la
-photo — est servi en local, donc le site s'affiche entièrement hors ligne.
+photo, les vidéos — est servi en local, donc le site s'affiche entièrement hors ligne.
 
 ---
 
@@ -29,9 +30,20 @@ qui reprend déjà le message du visiteur — rien n'est jamais perdu.
 FormSubmit, utilisé jusqu'au 30/09/2026, a été abandonné : son API renvoyait
 « Server Error » (500) pour toutes les adresses.
 
-Le code de l'envoi se trouve en bas de `index.html`, cherchez `ENDPOINT`.
-Pour changer l'adresse de réception, remplacez `challasylvio@gmail.com` partout dans le
-fichier (attribut `action` du formulaire, constante `ENDPOINT`, liens `mailto:`).
+Le code de l'envoi se trouve en bas de `index.html`, cherchez `ENDPOINT`. Les données
+partent en `FormData` (multipart), **pas en JSON** : c'est une requête « simple » qui ne
+déclenche pas de pré-vol CORS. Gardez-le ainsi.
+
+**Changer l'adresse de réception** : l'adresse n'est pas écrite dans le formulaire, elle
+est liée à la clé. Créez une nouvelle clé sur web3forms.com avec la nouvelle adresse,
+remplacez la valeur du champ `access_key`, puis mettez à jour les liens `mailto:` du
+fichier (en-tête de modale, menu, pied de page, message d'erreur).
+
+**Tester le formulaire** : uniquement depuis un vrai navigateur, sur le site en ligne ou
+derrière `python3 -m http.server`. Web3Forms refuse les envois faits hors navigateur
+(`curl` → 403 « Pro plan is required ») et son pare-feu bloque aussi les navigateurs
+automatisés qui s'annoncent comme « HeadlessChrome » : un échec dans ces deux cas ne
+veut pas dire que le formulaire est cassé. Dernier test réussi : 30/09/2026.
 
 ---
 
@@ -39,7 +51,7 @@ fichier (attribut `action` du formulaire, constante `ENDPOINT`, liens `mailto:`)
 
 | À faire | Où |
 |---|---|
-| **Activer le formulaire** (voir §1) | boîte mail challasylvio@gmail.com |
+| **Galerie design graphique** — l'encadré « Design graphique & identité de marque » de la section Motion n'a que du texte. Ajoutez des logos, chartes ou affiches. | `#motion`, bloc `.mo-brand` |
 | **Logo GAPOB** — leur site `gapob.bj` est injoignable, GAPOB s'affiche donc en toutes lettres. Envoyez-moi le fichier et je le pose. | `assets/firm-gapob.svg` à créer, puis section « marquee » |
 | **Année du baccalauréat** — j'ai mis 2024, à confirmer | 4<sup>e</sup> diapositive de « Formation & expérience » |
 | **Dates et intitulé exact de l'alternance GAPOB** | 2<sup>e</sup> diapositive de « Formation & expérience » |
@@ -81,12 +93,17 @@ Bailo et Sèmè City Open Park restent des projets réels (retirés de `#projets
 demande de Marc-Sylvio, gardés comme preuves dans certaines pages `services/`), mais ne
 sont plus mis en avant sur la page d'accueil.
 
-**Les pages de service** — chaque flèche de la section « Services » ouvre une page
-dédiée dans `services/` : ce que le service couvre, les projets déjà livrés dessus, la
-méthode de travail, et un appel à l'action e-mail + téléphone. Quatre pages partagent la
-feuille de style `assets/page.css`.
+**Les pages de service** — les quatre premières lignes de la section « Services » ouvrent
+une page dédiée dans `services/` : ce que le service couvre, les projets déjà livrés
+dessus, la méthode de travail, et un appel à l'action e-mail + téléphone. Les quatre pages
+partagent la feuille de style `assets/page.css`. La 5<sup>e</sup> ligne, « Motion design &
+identité de marque », n'a pas encore de page : elle fait défiler jusqu'à `#motion`.
 
-**Les chiffres affichés** : 12+ projets livrés, 15+ technologies, 15+ prototypes
+BelÔ Web a quitté la section Projets, mais `assets/projets/belo-web.jpg` reste utilisé
+comme preuve dans `services/applications-mobiles.html` : ne le supprimez pas.
+
+**Les chiffres affichés** : « 7 réalisations, du code au motion design » en bas du hero
+(5 projets + 2 vidéos — à mettre à jour si vous en ajoutez), puis 12+ projets livrés, 15+ technologies, 15+ prototypes
 électroniques, 24 h de délai de réponse. Ajustez-les dans la section « En chiffres »
 (attributs `data-count`) si vous préférez d'autres valeurs.
 
@@ -143,6 +160,9 @@ Le reste :
   `currentTime` de la vidéo, le `clip-path` de la carte et le `translateX` du personnage.
   Le fond blanc de la vidéo disparaît par `mix-blend-mode: multiply`, posé sur le
   conteneur et non sur la vidéo.
+- **Vidéos motion** (section `#motion`) — lecture muette automatique dès qu'une vidéo est
+  visible à moitié (`IntersectionObserver`), pause quand elle sort de l'écran. Si le
+  visiteur met pause lui-même, elle ne redémarre pas au scroll suivant.
 - **Parcours en diapositives** bord à bord (`scroll-snap` natif), flèches, points et
   navigation au clavier.
 - **Menu en feuille** sous le header ; le bouton se transforme en croix.
@@ -159,7 +179,8 @@ déclenche pas de faux survol.
 
 - Contrastes vérifiés **AA** sur toutes les paires texte/fond.
 - `prefers-reduced-motion` : l'intro est sautée, l'épinglage des cartes est désactivé,
-  tout reste lisible — aucun élément ne demeure invisible.
+  les vidéos motion ne démarrent pas seules, tout reste lisible — aucun élément ne
+  demeure invisible.
 - `prefers-reduced-transparency` et `prefers-contrast: more` également pris en charge.
 - Cibles tactiles ≥ 44 px, lien d'évitement, focus visible, `Échap` ferme menu et modale.
 - Aucun débordement horizontal de 320 px à 2560 px.
@@ -171,7 +192,9 @@ déclenche pas de faux survol.
 | Fichier | Source |
 |---|---|
 | `assets/marc-sylvio.jpg` | Votre portrait, recadré en carré 800 × 800. Il alimente **4 emplacements** (en-tête, chargement, cœur de l'orbite, pied de page) : remplacez ce seul fichier pour les mettre tous à jour. |
-| `assets/projets/*.jpg` | Captures réelles de vos projets, prises en lançant chacun d'eux (serveur Next.js, front buildé, pages statiques). Pour en refaire une, relancez le projet et remplacez le fichier en gardant le même nom. |
+| `assets/projets/*.jpg` | Captures réelles de vos projets, prises en lançant chacun d'eux (serveur Next.js, front buildé, pages statiques). `opus.jpg` est une capture 1280 × 800 du site en ligne opuscrp.com, recadrée dans la carte par `object-position:15% top` pour garder le logo. Pour en refaire une, remplacez le fichier en gardant le même nom. |
+| `assets/motion/*.mp4` | Vos rendus Remotion recompressés pour le web (voir §3). Winix : 3,9 Mo, GozemCar : 1 Mo. |
+| `assets/motion/*-poster.jpg` | Image affichée avant la lecture, extraite de chaque vidéo (Winix à 21 s, GozemCar à 17,3 s sur le logo). |
 | `assets/*.svg` (technos) | [Simple Icons](https://simpleicons.org), CC0 |
 | `assets/firm-epitech.svg`, `firm-ibm.svg` | Wikimedia Commons |
 | `assets/firm-semecity.svg` | Logo officiel, `semecity.bj` |
@@ -185,7 +208,15 @@ est un usage nominatif admis.
 
 ## 8. Mettre le site en ligne
 
-C'est un fichier statique : n'importe quel hébergeur gratuit convient.
+Le site est en ligne sur **GitHub Pages** : https://sx1vio.github.io/portfolio/
+(dépôt `sx1vio/portfolio`, branche `main`, remote git `gh-portfolio`). Pour publier une
+modification :
+
+```bash
+git push gh-portfolio main   # en ligne 2 à 3 minutes plus tard ; Ctrl+F5 pour forcer
+```
+
+C'est un fichier statique : n'importe quel autre hébergeur gratuit convient aussi.
 
 - **Netlify / Vercel** — glissez-déposez le dossier, c'est en ligne en une minute.
 - **GitHub Pages** — poussez le dossier, activez Pages sur la branche `main`.
