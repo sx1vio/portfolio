@@ -2597,10 +2597,12 @@ section[id], footer[id], div[id]{ scroll-margin-top:5.5rem }
 
     if (!window.fetch || location.protocol === 'file:') { fail(); return; }
 
+    // FormData (multipart) plutôt que JSON : requête "simple", sans pré-vol CORS,
+    // que Web3Forms refuse depuis un autre domaine
     fetch(ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(mForm)
     }).then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
       .then(function (j) { if (String(j.success) === 'true') done(); else fail(); })
       .catch(fail);
